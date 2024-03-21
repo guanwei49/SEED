@@ -20,11 +20,11 @@ iv) _**Receipt**_: This log records the execution of the receiving phase of the 
 
 v) _**Sepsis**_: Events in this log correspond to sepsis cases observed in a hospital.
 
->All real-life logs utilized in the experiments are stored in the 'eventlogs' folder. Each log is named according to the following convention: 'log_Name-anomaly_Ratio'.
+>All real-life logs, containing artificial anomalies ranging from 5% to 45%, utilized in the experiments are stored in the '_**eventlogs**_' folder. Each log is named according to the following convention: 'log_Name-anomaly_Ratio'.
 
 Eight synthetic datasets: i.e., **_Paper_**,  _**P2P**_, **_Small_**, **_Medium_**, **_Large_**, **_Huge_**, **_Gigantic_**, and **_Wide_**.
 
->All synthetic logs utilized in the experiments are stored in the 'eventlogs' folder. Each log is named according to the following convention: 'log_Name-anomaly_Ratio-attribute_Number'.
+>All synthetic logs, containing artificial anomalies ranging from 5% to 45%, utilized in the experiments are stored in the '_**eventlogs**_' folder. Each log is named according to the following convention: 'log_Name-anomaly_Ratio-attribute_Number'.
 
 ## Requirements
 - [PyTorch](https://pytorch.org)
@@ -34,6 +34,11 @@ Eight synthetic datasets: i.e., **_Paper_**,  _**P2P**_, **_Small_**, **_Medium_
 
 
 ## Run
+#### i) Set the running configuration:
+
+Modify '_**conf.py**_' to configure runtime settings.
+
+#### ii) Get the result for SEED on each dataset:
     ```
-      python main.py # get the result for SEED on each dataset
+      python main.py
     ```

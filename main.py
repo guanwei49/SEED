@@ -67,28 +67,28 @@ if __name__ == '__main__':
 
             ##trace level
             trace_p, trace_r, trace_f1, trace_aupr = cal_best_PRF(dataset.case_target, trace_level_abnormal_scores)
-            print("trace")
-            print(trace_p, trace_r, trace_f1, trace_aupr)
+            print("Trace-level anomaly detection")
+            print(f'precision: {trace_p}, recall: {trace_r}, F1-score: {trace_f1}, AP: {trace_aupr}')  #AP：average precision score
 
             ##event level
             eventTemp = dataset.binary_targets.sum(2).flatten()
             eventTemp[eventTemp > 1] = 1
             event_p, event_r, event_f1, event_aupr = cal_best_PRF(eventTemp, event_level_abnormal_scores.flatten())
-            print("event")
-            print(event_p, event_r, event_f1, event_aupr)
+            print("Event-level anomaly detection")
+            print(f'precision: {event_p}, recall: {event_r}, F1-score: {event_f1}, AP: {event_aupr}')
 
             ##attr level
             attr_p, attr_r, attr_f1, attr_aupr = cal_best_PRF(dataset.binary_targets.flatten(),
                                                               attr_level_abnormal_scores.flatten())
 
-            print("attr")
-            print(attr_p, attr_r, attr_f1, attr_aupr)
+            print("Attribute-level anomaly detection")
+            print(f'precision: {attr_p}, recall: {attr_r}, F1-score: {attr_f1}, AP: {attr_aupr}')
 
 
             datanew = pd.DataFrame([{'index': dataset_name, 'trace_p': trace_p, "trace_r": trace_r, 'trace_f1': trace_f1,
-                                     'trace_aupr': trace_aupr,
-                                     'event_p': event_p, "event_r": event_r, 'event_f1': event_f1, 'event_aupr': event_aupr,
-                                     'attr_p': attr_p, "attr_r": attr_r, 'attr_f1': attr_f1, 'attr_aupr': attr_aupr,
+                      'trace_AP': trace_aupr,
+                      'event_p': event_p, "event_r": event_r, 'event_f1': event_f1, 'event_AP': event_aupr,
+                      'attr_p': attr_p, "attr_r": attr_r, 'attr_f1': attr_f1, 'attr_AP': attr_aupr
                                      }])
             if os.path.exists(resPath):
                 data = pd.read_csv(resPath)
