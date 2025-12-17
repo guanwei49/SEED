@@ -29,13 +29,13 @@ def main(dataset):
     train_Dataset = Data.TensorDataset(*Xs, mask)
     detect_Dataset = Data.TensorDataset(*Xs, mask)
 
-    train_dataloader = DataLoader(train_Dataset, batch_size,shuffle=True,num_workers=4,pin_memory=True, drop_last=True)
+    train_dataloader = DataLoader(train_Dataset, batch_size,shuffle=True,num_workers=0,pin_memory=True, drop_last=True)
 
     encoder, decoder = train_stage1(train_dataloader, dataset.attribute_dims, dataset.max_len)
     encoder, decoder = train_stage2(train_dataloader, encoder, decoder, dataset.attribute_dims)
 
     detect_dataloader = DataLoader(detect_Dataset, batch_size,
-                            shuffle=False,num_workers=4,pin_memory=True)
+                            shuffle=False,num_workers=0,pin_memory=True)
 
     attr_Shape=(dataset.num_cases,dataset.max_len,dataset.num_attributes)
     trace_level_abnormal_scores,event_level_abnormal_scores,attr_level_abnormal_scores = detect(encoder,decoder, detect_dataloader, dataset.attribute_dims,attr_Shape=attr_Shape)
